@@ -1,0 +1,32 @@
+body {
+  margin: 0px;
+}
+
+h1 {
+  margin-top: 0px;
+}
+
+.top-container {
+  box-sizing: border-box;
+  background-color: #e4f9f5;
+  width: 200px;
+  height: 200px;
+}
+
+.middle-container {
+  box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+  background-color: red;
+  border: 5px solid black;
+  margin-left: 200px;
+}
+
+.bottom-container {
+  box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+  background-color: yellow;
+  border: 5px dotted black;
+  margin-left: 400px;
+}
