@@ -1,0 +1,14 @@
+{
+  "name": "javascirptclass",
+  "version": "1.0.0",
+  "description": "None",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Konadu Akwasi Akuoko",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}

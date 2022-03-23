@@ -1,15 +1,12 @@
-// const square = require("./index");
+let timeOut = (callback) => {
+  setTimeout(function () {
+    console.log("I am still learning");
+    callback();
+  }, 5000);
+};
 
-// // let Square = square.Square;
+function readToConsole() {
+  console.log("I am waiting for the first one to finish");
+}
 
-// class sq extends square.Square {
-//   constructor(...args) {
-//     super(...args);
-//   }
-// }
-
-import { Square } from "./index.mjs";
-let sq = Square;
-let square2 = new sq(2, 2);
-
-console.log(square2.area());
+timeOut(readToConsole);
