@@ -1,12 +1,32 @@
-let timeOut = (callback) => {
-  setTimeout(function () {
-    console.log("I am still learning");
-    callback();
-  }, 5000);
-};
+let p = new Promise((resolve, reject) => {
+  let a = 1 + 3;
+  if (a === 3) {
+    resolve("Success");
+  } else {
+    reject("Failed");
+  }
+});
 
-function readToConsole() {
-  console.log("I am waiting for the first one to finish");
-}
-
-timeOut(readToConsole);
+p.then(
+  (message) => {
+    console.log(message);
+    return err;
+  },
+  (err) => {
+    console.error(err);
+    return err;
+  }
+).then(
+  (returnValue) => {
+    let a = [...returnValue];
+    a.forEach((element) => {
+      console.log(element);
+    });
+  },
+  (returnValue) => {
+    let b = [...returnValue];
+    b.forEach((element) => {
+      console.log(element);
+    });
+  }
+);

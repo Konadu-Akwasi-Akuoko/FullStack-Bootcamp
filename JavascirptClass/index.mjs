@@ -1,64 +1,38 @@
-import { createConnection } from "mysql";
-import fs from "fs";
+function get(url) {
+  // Return a new promise.
+  return new Promise(function (resolve, reject) {
+    // Do the usual XHR stuff
+    var req = new XMLHttpRequest();
+    req.open("GET", url);
 
-let connection = createConnection({
-  host: "localhost",
-  user: "JavaScript",
-  password: "akwasi0556446613",
-  database: "JavaScriptDB",
-});
-
-function connectToDB() {
-  connection.connect((err) => {
-    if (err) {
-      console.error(`Couldn't connect to DB, error: ${err}`);
-    } else console.log(`Connected successfully`);
-  });
-}
-
-function insertIntoDB() {
-  connection.query(
-    "INSERT INTO EMPLOYEE (Name, Sex) VALUES ('Vivian Akuoko', 'F'), ('Yaw Akuoko', 'M')",
-    (err, results) => {
-      if (err) {
-        console.error(`Couldn't insert values into DB, error: ${err}`);
+    req.onload = function () {
+      // This is called even on 404 etc
+      // so check the status
+      if (req.status == 200) {
+        // Resolve the promise with the response text
+        resolve(req.response);
       } else {
-        console.log(`Values inserted successfully, results: ${results}`);
+        // Otherwise reject with the status text
+        // which will hopefully be a meaningful error
+        reject(Error(req.statusText));
       }
-    }
-  );
-}
+    };
 
-function queryResultsAndStore() {
-  connection.query("SELECT * FROM EMPLOYEE", (err, results) => {
-    if (err) {
-      console.error(`Couldn't query results, error: ${err}`);
-    } else {
-      let employees = JSON.stringify(results);
-      employees = JSON.parse(employees);
-      for (const keys in employees) {
-        console.log(keys, employees[keys]);
-      }
-      employees = JSON.stringify(employees, null, 2);
-      fs.writeFile("employees-1.json", employees, (err) => {
-        if (err) throw err;
-        else console.log("File written successfully");
-      });
-    }
+    // Handle network errors
+    req.onerror = function () {
+      reject(Error("Network Error"));
+    };
+
+    // Make the request
+    req.send();
   });
 }
 
-function closeDB() {
-  connection.end((err) => {
-    if (err) {
-      console.error(`Connection not closed, error: ${err}`);
-    } else {
-      console.log(`DB disconnected successfully`);
-    }
-  });
-}
-
-connectToDB();
-// insertIntoDB();
-queryResultsAndStore();
-closeDB();
+get("story.json").then(
+  function (response) {
+    console.log("Success!", response);
+  },
+  function (error) {
+    console.error("Failed!", error);
+  }
+);
