@@ -1,32 +1,23 @@
-let p = new Promise((resolve, reject) => {
-  let a = 1 + 3;
-  if (a === 3) {
-    resolve("Success");
-  } else {
-    reject("Failed");
-  }
-});
+import fetch from "node-fetch";
 
-p.then(
-  (message) => {
-    console.log(message);
-    return err;
-  },
-  (err) => {
-    console.error(err);
-    return err;
+async function fetchProducts() {
+  try {
+    const response = await fetch(
+      "https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json"
+    );
+    if (!response.ok) {
+      console.log("HTTP error: " + response.status);
+    }
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    console.log("Could not get products from server" + error);
   }
-).then(
-  (returnValue) => {
-    let a = [...returnValue];
-    a.forEach((element) => {
-      console.log(element);
-    });
-  },
-  (returnValue) => {
-    let b = [...returnValue];
-    b.forEach((element) => {
-      console.log(element);
-    });
-  }
-);
+}
+
+const jsonPromise = fetchProducts();
+
+jsonPromise.then((data) => {
+  console.log(typeof data);
+  console.log(Object.entries(data));
+});

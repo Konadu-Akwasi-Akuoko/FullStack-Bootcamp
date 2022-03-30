@@ -9,6 +9,7 @@
   "author": "Konadu Akwasi Akuoko",
   "license": "ISC",
   "dependencies": {
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "node-fetch": "^3.2.3"
   }
 }
