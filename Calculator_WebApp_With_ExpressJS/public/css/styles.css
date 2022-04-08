@@ -1,0 +1,23 @@
+body {
+  font-family: serif;
+}
+
+a {
+  display: inline-block;
+  padding: 12px;
+  background-color: blue;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 10px;
+  color: white;
+}
+
+button {
+  display: inline-block;
+  padding: 12px;
+  background-color: blue;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 10px;
+  color: white;
+}
