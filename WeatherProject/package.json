@@ -1,0 +1,19 @@
+{
+  "name": "weatherproject",
+  "version": "1.0.0",
+  "description": "A weather app that uses API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": " tailwindcss build -i src/styles.css -o public/styles/styles.css"
+  },
+  "author": "Akuoko Konadu Akwasi",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.23"
+  }
+}
