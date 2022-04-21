@@ -10,9 +10,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/contact", (req, res) => {
-  res.send(`<h1>Contact me at <a href="https://google.com">my email.</a></h1>
+  res.send(`<span style="font-weight: bold">
+  <h1>Contact me at <a href="https://google.com">my email.</a></h1>
   <p>Go to <a href="/">home</a></p>
-  <p>Go to <a href="/about">about</a></p>`);
+  <p>Go to <a href="/about">about</a></p>
+  </span>`);
 });
 
 app.get("/about", (req, res) => {

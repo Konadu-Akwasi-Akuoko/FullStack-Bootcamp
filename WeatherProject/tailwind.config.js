@@ -6,8 +6,8 @@ module.exports = {
         yaldevi: "Yaldevi, sans-serif",
       },
       backgroundImage: {
-        'nightSky': "url('Images/nightSky.png')",
-        'daySky': "url('Images/daySky.png')",
+        nightSky: "url('/Images/nightSky.png')",
+        daySky: "url('/Images/daySky.png')",
       },
     },
   },
