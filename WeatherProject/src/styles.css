@@ -1,6 +1,61 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Yaldevi:wght@200;300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Yaldevi:wght@200;300;400;500;600;700&display=swap");
+
+@media all and (min-width: 1280px) {
+  #container {
+    @apply w-5/6 mx-auto inset-x-0 text-white;
+  }
+
+  #horizontal-container {
+    @apply w-1/3 h-screen z-20 right-0 text-white;
+    background-color: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(50px);
+  }
+
+  #horizontal-container-content {
+    padding-right: 25%;
+  }
+
+  #search-text {
+    height: 100px;
+  }
+
+  #search-button {
+    padding: 30px;
+    width: 8.4%;
+    display: absolute;
+    right: 0px;
+    top: 0px;
+  }
+
+  #big-label {
+    bottom: 15%;
+  }
+}
+
+@media all and (max-width: 1279px) {
+  .container-phone {
+    margin: 0px 5%;
+  }
+
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 20px;
+    backdrop-filter: blur(100px);
+    @apply border-2;
+  }
+
+  .secondry-label {
+    bottom: 120px;
+    width: 90%;
+  }
+
+  #secondry-label-horizontal-br {
+    @apply bg-white;
+    width: 0.5px;
+    height: 30px;
+  }
+}

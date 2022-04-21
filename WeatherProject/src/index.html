@@ -5,10 +5,174 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/styles.css" />
-    <title>Document</title>
+    <title>Konadu's Weather App</title>
   </head>
-  <body class="font-yaldevi bg-nightSky">
-    <div class="w-9 h-9 bg-red-400"></div>
+  <body class="font-yaldevi bg-black relative text-white">
+    <!-- !Root -->
+    <div class="xl:relative">
+      <!-- !Background Image-->
+      <div class="xl:absolute w-screen h-screen xl:z-0">
+        <picture id="background-image-desktop" class="w-screen h-screen">
+          <source media="(min-width:0px)" srcset="Images/nightSky.png" />
+          <img
+            src="Images/nightSky.png"
+            alt="A sunny day"
+            class="w-screen h-screen object-cover object-center"
+          />
+        </picture>
+      </div>
+      <!-- !Desktop HTML -->
+      <div class="hidden xl:flex">
+        <!-- !Content Left Side-->
+        <div id="container" class="xl:absolute xl:h-screen xl:z-10">
+          <!-- !Big Label-->
+          <div id="big-label" class="xl:absolute">
+            <div class="xl:inline-block xl:mr-9">
+              <p id="bigTempDP" class="label-temp xl:text-8xl xl:font-bold">16<sup>oc</sup></p>
+            </div>
+            <div class="xl:inline-block">
+              <p id="locationDP" class="xl:text-5xl xl:font-medium">Kumasi</p>
+              <p class="xl:text-3xl xl:font-medium">
+                06:09 - Monday, 11 Apr ‘20
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- !Content Right Side -->
+
+        <div id="horizontal-container" class="xl:absolute xl:h-screen">
+          <div
+            id="horizontal-container-content"
+            class="xl:w-full xl:h-screen xl:box-border"
+          >
+            <!-- *Content -->
+            <div class="xl:ml-8">
+              <!-- !Search Box -->
+                <div id="search-text" class="xl:flex">
+                  <input
+                    id="search-box"
+                    type="text"
+                    placeholder="Type In Another City"
+                    class="xl:self-end xl:font-extralight xl:text-3xl xl:w-full xl:bg-inherit xl:border-b-2 xl:border-b-gray-400 xl:placeholder:text-gray-400 xl:active:outline-0 xl:focus:outline-0 xl:focus:border-b-white"
+                  /></div
+
+              <!-- !Suggested Cities -->
+              <div class="xl:mt-16 xl:flex hidden">
+                <div
+                  class="xl:flex xl:flex-col xl:text-2xl xl:font-extralight xl:space-y-8"
+                >
+                  <p>Manchester</p>
+                  <p>California</p>
+                  <p>Madrid</p>
+                  <p>Paris</p>
+                </div>
+              </div>
+              <!-- !Horizontal rule -->
+              <hr class="xl:my-16 xl:flex hidden" />
+              <!-- !Weather Details -->
+              <div class="">
+                <p class="xl:text-3xl xl:font-semibold xl:mb-7">
+                  Weather Details
+                </p>
+                <div class="xl:flex xl:flex-row xl:justify-between">
+                  <!-- !Weather Labels -->
+                  <div class="xl:flex xl:flex-col xl:space-y-7">
+                    <p class="xl:text-3xl xl:font-extralight">Temperature</p>
+                    <p class="xl:text-3xl xl:font-extralight">Wind Speed</p>
+                    <p class="xl:text-3xl xl:font-extralight">Humidity</p>
+                    <p class="xl:text-3xl xl:font-extralight">Weather</p>
+                  </div>
+                  <!-- !Weather Values -->
+                  <div
+                    class="xl:flex xl:flex-col xl:space-y-7 xl:justify-items-end xl:text-right"
+                  >
+                    <p id="smallTempDP" class="xl:text-2xl xl:font-medium">16 <sup>oc</sup></p>
+                    <p id="smallWindSpeedDP" class="xl:text-2xl xl:font-medium">8km/hr</p>
+                    <p id="smallHumidityDP" class="xl:text-2xl xl:font-medium">88</p>
+                    <p id="smallWeatherDP" class="xl:text-2xl xl:font-medium">Rainy</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- !Phones and tablet HTML -->
+      <div class="xl:hidden block w-full h-full absolute z-10 inset-0">
+        <!-- !Container -->
+        <div class="container-phone">
+          <!-- *Search Button -->
+          <div
+            class="mt-6 mb-14 flex flex-row border-gray-400 glassmorphism justify-between focus-within:border-white"
+          >
+            <div class="pl-4 pr-2 py-2 w-full">
+              <input
+                type="text"
+                placeholder="Type in another city"
+                class="font-extralight bg-inherit placeholder:text-gray-400 focus-visible:outline-none w-full"
+              />
+            </div>
+            <div class="pr-4 py-2">
+              <a href="">
+                <span
+                  class="iconify xl:mx-auto xl:text-center"
+                  data-icon="bi:search"
+                  style="color: white; font-size: 24px"
+                ></span>
+              </a>
+            </div>
+          </div>
+          <!-- *Main Label -->
+          <div class="glassmorphism w-full border-white">
+            <div class="p-5 flex flex-col">
+              <p class="text-8xl font-bold mb-8">16<sup>oc</sup></p>
+              <p class="text-5xl font-medium mb-4">Kumasi</p>
+              <p class="text-3xl font-medium mb-4">Monday, 11 Apr ‘20</p>
+              <p class="text-3xl font-medium mb-4">06:09</p>
+            </div>
+          </div>
+          <!-- *Secondary label -->
+          <div class="secondry-label glassmorphism absolute">
+            <div
+              class="flex flex-row p-5 justify-between items-center text-center"
+            >
+              <div class="flex flex-col space-y-1.5">
+                <p class="text-lg font-bold">88</p>
+                <p class="text-xs">Humidity</p>
+              </div>
+              <div id="secondry-label-horizontal-br"></div>
+              <div class="flex flex-col space-y-1.5">
+                <p class="text-lg font-bold">8 km/hr</p>
+                <p class="text-xs">Wind Speed</p>
+              </div>
+              <div id="secondry-label-horizontal-br"></div>
+              <div class="flex flex-col space-y-1.5">
+                <p class="text-lg font-bold">Rainy</p>
+                <p class="text-xs">Weather</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- !Desktop Search Button -->
+      <a onclick="getWeather()">
+      <div
+        id="search-button"
+        class="xl:bg-orange-400 xl:absolute z-40 hidden xl:flex xl:hover:bg-orange-600"
+      >
+        <span
+          class="iconify xl:mx-auto xl:text-center"
+          data-icon="bi:search"
+          style="color: black; font-size: 40px"
+        ></span>
+      </div>
+      </a>
+
+    </div>
+
+    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="Scripts/index.js"></script>
   </body>
