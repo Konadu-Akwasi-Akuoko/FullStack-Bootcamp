@@ -1,10 +1,11 @@
 const express = require("express");
 const https = require("https");
+const { configurationKey } = require("./config");
 
 const app = express();
 const port = 3000;
 
-const apiKey = "1e9818ae313ea600494097a9b264dd1d";
+const apiKey = configurationKey.apiKey;
 const apiURLGeoLocation = "https://api.openweathermap.org/geo/1.0/direct";
 const apiWeather = "https://api.openweathermap.org/data/2.5/weather";
 const apiUnits = "metric";
