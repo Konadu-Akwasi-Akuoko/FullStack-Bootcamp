@@ -33,7 +33,8 @@ app.post("/newsletter", (req, res) => {
       if (response.id) {
         res.sendFile(__dirname + "/success.html");
       } else {
-        res.send("Error" + "\n" + JSON.stringify(response));
+        //res.send("Error" + "\n" + JSON.stringify(response));
+        res.sendFile(__dirname + "/failure.html");
       }
     });
 });
