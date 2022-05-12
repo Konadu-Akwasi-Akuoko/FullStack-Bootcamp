@@ -32,7 +32,9 @@ let mailchimpListQueries = {
       console.log(response);
       //This returns the response from the mailchimp api in an object form
       return response;
-    } catch (e) {  //Catch the error when there is, and return the error
+    } catch (e) {
+      //Catch the error when there is, and return the error
+      console.log(e);
       return e;
     }
   },
