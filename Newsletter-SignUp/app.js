@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/signup.html");
 });
 
-app.post("/newsletter", (req, res) => {
+app.post("/", (req, res) => {
   console.log(req.body);
 
   let fName = req.body.firstName;
@@ -35,6 +35,7 @@ app.post("/newsletter", (req, res) => {
       } else {
         //res.send("Error" + "\n" + JSON.stringify(response));
         res.sendFile(__dirname + "/failure.html");
+        console.log(response);
       }
     });
 });
