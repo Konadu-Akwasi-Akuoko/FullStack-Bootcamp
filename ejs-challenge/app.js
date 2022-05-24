@@ -2,7 +2,7 @@ const express = require("express");
 
 const app = express();
 //Serve static files with this middleware
-app.use(express.static("Public"));
+app.use(express.static("public"));
 //Use body-parser to parse form data with this middleware
 app.use(express.urlencoded({ extended: true }));
 //Convert json data to javascript object with this middleware
