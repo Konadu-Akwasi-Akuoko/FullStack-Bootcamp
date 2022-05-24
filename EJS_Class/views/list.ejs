@@ -1,0 +1,24 @@
+<%- include("header") -%>
+
+<h1 id="heading"><%= _listTitle %></h1>
+
+<div class="box">
+  <% _addToDoArr.forEach(element => { %>
+  <div class="item">
+    <input type="checkbox" name="checkbox" id="" />
+    <p><%= element %></p>
+  </div>
+  <% }) %>
+
+  <form class="item" action="/" method="post">
+    <input
+      type="text"
+      placeholder="New Item"
+      name="toDoItem"
+      autocomplete="off"
+    />
+    <button type="submit" name="list" value=<%=_listTitle%>>+</button>
+  </form>
+</div>
+
+<%- include("footer") -%>
