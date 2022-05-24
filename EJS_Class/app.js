@@ -2,7 +2,7 @@ const express = require("express");
 
 const app = express();
 //Serve static files with this middleware
-app.use(express.static("public"));
+app.use(express.static("Public"));
 //Use body-parser to parse form data with this middleware
 app.use(express.urlencoded({ extended: true }));
 //Convert json data to javascript object with this middleware
@@ -18,16 +18,36 @@ const options = {
   day: "numeric",
 };
 
+let addToDoArr = [];
+let addToDoWorkList = [];
+
 app.get("/", (req, res) => {
-  res.render("list", { _date: date.toLocaleDateString("default", options) });
+  res.render("list", {
+    _listTitle: date.toLocaleDateString("default", options),
+    _addToDoArr: addToDoArr,
+  });
 });
 
 app.post("/", (req, res) => {
-  console.log("Post request received " + req.body.toDoItem);
-  res.render("list2", {
-    _date: date.toLocaleDateString("default", options),
-    addToDo1: req.body.toDoItem,
+  //Check and see the title of the request
+  if (req.body.list === "Work") {
+    addToDoWorkList.push(req.body.toDoItem);
+    res.redirect("/work");
+  } else {
+    addToDoArr.push(req.body.toDoItem);
+    res.redirect("/");
+  }
+});
+
+app.get("/work", (req, res) => {
+  res.render("list", {
+    _listTitle: "Work List",
+    _addToDoArr: addToDoWorkList,
   });
+});
+
+app.get("/about", (req, res) => {
+  res.render("about");
 });
 
 app.listen(port, () => {
