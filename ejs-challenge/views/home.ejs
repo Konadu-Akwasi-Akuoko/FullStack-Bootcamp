@@ -1,12 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Hello it's me</h1>
-  </body>
-</html>
+<%- include("partials/header") -%>
+
+<h1>Home</h1>
+<p><%= _homeStartingContent %></p>
+<% _posts.forEach(post => { %>
+<a href="/post/<%= post.title %>">
+  <h1><%= post.title %></h1>
+  <div>
+    <p
+      class="text-truncate"
+      style="
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      "
+    >
+      <%= post.content %>
+    </p>
+  </div>
+</a>
+
+<% }) %> <%- include("partials/footer") -%>
