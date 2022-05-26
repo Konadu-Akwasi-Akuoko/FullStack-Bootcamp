@@ -1,4 +1,5 @@
 const express = require("express");
+const { toKebabCase } = require("./modules");
 
 const app = express();
 //Serve static files with this middleware
@@ -27,19 +28,6 @@ app.get("/", function (req, res) {
   });
 });
 
-//Using express route parameters
-app.get("/post/:postTitle", function (req, res) {
-  posts.forEach((post) => {
-    if (post.title === req.params.postTitle) {
-      res.render("post", {
-        _postTitle: post.title,
-        _postContent: post.content,
-      });
-    }
-  });
-  res.render("post", {});
-});
-
 app.get("/contact", function (req, res) {
   res.render("contact", { _contactContent: contactContent });
 });
@@ -52,18 +40,32 @@ app.get("/compose", function (req, res) {
   res.render("compose");
 });
 
+//Using express route parameters
+app.get("/post/:postTitle", function (req, res) {
+  const postURLParameter = toKebabCase(req.params.postTitle);
+  //Find the post with the title by filtering it with find()
+  //This method would return the first post that matches the condition
+  const post = posts.find((post) => post.urlParameter === postURLParameter);
+  if (post) {
+    res.render("post", {
+      _postTitle: post.title,
+      _postContent: post.content,
+    });
+  } else {
+    res.render("404");
+  }
+});
+
 app.post("/compose", function (req, res) {
   const postTitle = req.body.postTitle;
   const postBody = req.body.postBody;
-  console.log(postBody);
   //Store the postTitle and postBody in an object
   const post = {
+    urlParameter: toKebabCase(postTitle),
     title: postTitle,
     content: postBody,
   };
   //Push the object into the posts array
-  console.log("------------------------------------");
-  console.log(post.content);
   posts.push(post);
   res.redirect("/");
 });
