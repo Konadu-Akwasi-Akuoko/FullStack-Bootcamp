@@ -1,0 +1,14 @@
+{
+  "name": "fruits-project",
+  "version": "1.0.0",
+  "description": "Creating a project where I can rate fruits",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Konadu Akwasi Akuoko",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^4.6.0"
+  }
+}
