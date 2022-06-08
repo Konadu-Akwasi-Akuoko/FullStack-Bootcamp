@@ -4,10 +4,13 @@
 
 <div class="box">
   <% _addToDoArr.forEach(element => { %>
-  <div class="item">
-    <input type="checkbox" name="checkbox" id="" />
-    <p><%= element %></p>
-  </div>
+  <form action="/delete/<%= element._id %> " method="post">
+    <div class="item">
+      <input type="checkbox" name="checkbox" onchange="this.form.submit()" />
+      <p><%= element.name %></p>
+    </div>
+  </form>
+
   <% }) %>
 
   <form class="item" action="/" method="post">
@@ -17,7 +20,7 @@
       name="toDoItem"
       autocomplete="off"
     />
-    <button type="submit" name="list" value=<%=_listTitle%>>+</button>
+    <button type="submit" name="list" value=<%=_listTitle%> >+</button>
   </form>
 </div>
 

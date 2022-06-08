@@ -1,4 +1,6 @@
 const express = require("express");
+//Require db.js
+const { db } = require("./db");
 
 const app = express();
 //Serve static files with this middleware
@@ -18,25 +20,27 @@ const options = {
   day: "numeric",
 };
 
-let addToDoArr = [];
 let addToDoWorkList = [];
 
 app.get("/", (req, res) => {
-  res.render("list", {
-    _listTitle: date.toLocaleDateString("default", options),
-    _addToDoArr: addToDoArr,
+  //Get all the items from the database, and use .then to get the data,
+  //and render the index.ejs file inside the callback function
+  db.getAllItems().then((items) => {
+    res.render("list", {
+      _listTitle: date.toLocaleDateString("default", options),
+      _addToDoArr: items,
+    });
   });
 });
 
 app.post("/", (req, res) => {
-  //Check and see the title of the request
-  if (req.body.list === "Work") {
-    addToDoWorkList.push(req.body.toDoItem);
-    res.redirect("/work");
-  } else {
-    addToDoArr.push(req.body.toDoItem);
-    res.redirect("/");
-  }
+  db.addItem(req.body.toDoItem);
+  res.redirect("/");
+});
+
+app.post("/delete/:item", (req, res) => {
+  db.deleteItem(req.params.item);
+  res.redirect("/");
 });
 
 app.get("/work", (req, res) => {
