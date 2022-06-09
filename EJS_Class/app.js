@@ -1,6 +1,8 @@
 const express = require("express");
 //Require db.js
 const { db } = require("./db");
+//Require CustomList from db.js
+const { CustomList } = require("./db");
 
 const app = express();
 //Serve static files with this middleware
@@ -19,6 +21,7 @@ const options = {
   month: "long",
   day: "numeric",
 };
+let listTitle = date.toLocaleDateString("default", options);
 
 let addToDoWorkList = [];
 
@@ -27,20 +30,40 @@ app.get("/", (req, res) => {
   //and render the index.ejs file inside the callback function
   db.getAllItems().then((items) => {
     res.render("list", {
-      _listTitle: date.toLocaleDateString("default", options),
+      _listTitle: listTitle,
       _addToDoArr: items,
     });
   });
 });
 
 app.post("/", (req, res) => {
-  db.addItem(req.body.toDoItem);
-  res.redirect("/");
+  if (req.body.list == listTitle) {
+    db.addItem(req.body.toDoItem);
+    res.redirect("/");
+  } else {
+    new CustomList(req.body.list).addItem(req.body.toDoItem);
+    res.redirect("/" + req.body.list);
+  }
+});
+
+app.get("/:todo", (req, res) => {
+  let todo = req.params.todo;
+  new CustomList(todo).getAllItems().then((items) => {
+    res.render("list", {
+      _listTitle: todo,
+      _addToDoArr: items,
+    });
+  });
 });
 
 app.post("/delete/:item", (req, res) => {
-  db.deleteItem(req.params.item);
-  res.redirect("/");
+  if (req.body.checkbox == listTitle) {
+    db.deleteItem(req.params.item);
+    res.redirect("/");
+  } else {
+    new CustomList(req.body.checkbox).deleteItem(req.params.item);
+    res.redirect("/" + req.body.checkbox);
+  }
 });
 
 app.get("/work", (req, res) => {
