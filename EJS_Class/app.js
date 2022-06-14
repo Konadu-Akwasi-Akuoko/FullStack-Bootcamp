@@ -2,7 +2,7 @@ const express = require("express");
 //Require db.js
 const { db } = require("./db");
 //Require CustomList from db.js
-const { CustomList } = require("./db");
+const { customList } = require("./db");
 
 const app = express();
 //Serve static files with this middleware
@@ -36,24 +36,24 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/:todo", (req, res) => {
+  let todo = req.params.todo;
+  customList.getAllItems(todo).then((items) => {
+    res.render("list", {
+      _listTitle: todo,
+      _addToDoArr: items.items,
+    });
+  });
+});
+
 app.post("/", (req, res) => {
   if (req.body.list == listTitle) {
     db.addItem(req.body.toDoItem);
     res.redirect("/");
   } else {
-    new CustomList(req.body.list).addItem(req.body.toDoItem);
+    // new CustomList(req.body.list).addItem(req.body.toDoItem);
     res.redirect("/" + req.body.list);
   }
-});
-
-app.get("/:todo", (req, res) => {
-  let todo = req.params.todo;
-  new CustomList(todo).getAllItems().then((items) => {
-    res.render("list", {
-      _listTitle: todo,
-      _addToDoArr: items,
-    });
-  });
 });
 
 app.post("/delete/:item", (req, res) => {
@@ -61,7 +61,7 @@ app.post("/delete/:item", (req, res) => {
     db.deleteItem(req.params.item);
     res.redirect("/");
   } else {
-    new CustomList(req.body.checkbox).deleteItem(req.params.item);
+    // new CustomList(req.body.checkbox).deleteItem(req.params.item);
     res.redirect("/" + req.body.checkbox);
   }
 });
