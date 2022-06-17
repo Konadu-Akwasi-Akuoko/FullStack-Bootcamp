@@ -37,21 +37,28 @@ app.get("/", (req, res) => {
 });
 
 app.get("/:todo", (req, res) => {
-  let todo = req.params.todo;
-  customList.getAllItems(todo).then((items) => {
-    res.render("list", {
-      _listTitle: todo,
-      _addToDoArr: items.items,
+  //Because we are using the root path to get the todo, we need
+  //to stop if from running if the todo is empty
+  if (req.params.todo === "favicon.ico" || req.params.todo === "") {
+    return;
+  } else {
+    let todo = req.params.todo;
+    customList.getCustomList(todo).then((items) => {
+      res.render("list", {
+        _listTitle: todo,
+        _addToDoArr: items,
+      });
     });
-  });
+  }
 });
 
+//Adding a new item to the database route
 app.post("/", (req, res) => {
   if (req.body.list == listTitle) {
     db.addItem(req.body.toDoItem);
     res.redirect("/");
   } else {
-    // new CustomList(req.body.list).addItem(req.body.toDoItem);
+    customList.addItemToCustomList(req.body.list, req.body.toDoItem);
     res.redirect("/" + req.body.list);
   }
 });
@@ -61,19 +68,12 @@ app.post("/delete/:item", (req, res) => {
     db.deleteItem(req.params.item);
     res.redirect("/");
   } else {
-    // new CustomList(req.body.checkbox).deleteItem(req.params.item);
+    customList.removeFromCustomList(req.body.checkbox, req.params.item);
     res.redirect("/" + req.body.checkbox);
   }
 });
 
-app.get("/work", (req, res) => {
-  res.render("list", {
-    _listTitle: "Work List",
-    _addToDoArr: addToDoWorkList,
-  });
-});
-
-app.get("/about", (req, res) => {
+app.get("/about/konadu", (req, res) => {
   res.render("about");
 });
 
