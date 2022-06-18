@@ -1,5 +1,6 @@
 const express = require("express");
 const { toKebabCase } = require("./modules");
+const { blogDB } = require("./db");
 
 const app = express();
 //Serve static files with this middleware
@@ -19,12 +20,12 @@ const aboutContent =
 const contactContent =
   "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 
-let posts = [];
-
 app.get("/", function (req, res) {
-  res.render("home", {
-    _homeStartingContent: homeStartingContent,
-    _posts: posts,
+  blogDB.getAllPosts().then((data) => {
+    res.render("home", {
+      _homeStartingContent: homeStartingContent,
+      _posts: data,
+    });
   });
 });
 
@@ -41,32 +42,25 @@ app.get("/compose", function (req, res) {
 });
 
 //Using express route parameters
-app.get("/post/:postTitle", function (req, res) {
-  const postURLParameter = toKebabCase(req.params.postTitle);
-  //Find the post with the title by filtering it with find()
-  //This method would return the first post that matches the condition
-  const post = posts.find((post) => post.urlParameter === postURLParameter);
-  if (post) {
-    res.render("post", {
-      _postTitle: post.title,
-      _postContent: post.content,
+app.get("/post/:postID", function (req, res) {
+  blogDB
+    .getPostById(req.params.postID)
+    .then((data) => {
+      res.render("post", {
+        _postTitle: data.title,
+        _postContent: data.content,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("404");
     });
-  } else {
-    res.render("404");
-  }
 });
 
 app.post("/compose", function (req, res) {
   const postTitle = req.body.postTitle;
   const postBody = req.body.postBody;
-  //Store the postTitle and postBody in an object
-  const post = {
-    urlParameter: toKebabCase(postTitle),
-    title: postTitle,
-    content: postBody,
-  };
-  //Push the object into the posts array
-  posts.push(post);
+  blogDB.savePost(postTitle, postBody);
   res.redirect("/");
 });
 
