@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.0"
+  },
+  "name": "wiki-api",
+  "version": "1.0.0",
+  "description": "Learning how to create a RESTful api",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Akuoko Konadu Akwasi",
+  "license": "ISC"
+}
