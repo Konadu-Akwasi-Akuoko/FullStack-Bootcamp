@@ -8,7 +8,9 @@
   "version": "1.0.0",
   "description": "Learning how to create a RESTful api",
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
