@@ -70,6 +70,25 @@ app
       .catch((err) => {
         res.send(err);
       });
+  })
+  .patch((req, res) => {
+    db.updatePartOfArticle(req.params.title, req.body)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  })
+  .delete((req, res) => {
+    db.deleteAnArticle(req.params.title).then(
+      (data) => {
+        res.send(data);
+      },
+      (err) => {
+        res.send(err);
+      }
+    );
   });
 
 app.listen(port, () => {

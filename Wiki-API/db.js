@@ -91,6 +91,34 @@ let db = {
     });
   },
 
+  updatePartOfArticle: (titleToUpdate, update) => {
+    return new Promise((resolve, reject) => {
+      Article.updateOne({ title: titleToUpdate }, update, (err, data) => {
+        if (err) {
+          console.log(err);
+          reject(err);
+        } else {
+          //console.log(data);
+          resolve(data);
+        }
+      });
+    });
+  },
+
+  deleteAnArticle: (title) => {
+    return new Promise((resolve, reject) => {
+      Article.deleteOne({ title: title }, (err, data) => {
+        if (err) {
+          console.log(err);
+          reject(err);
+        } else {
+          //console.log(data);
+          resolve(data);
+        }
+      });
+    });
+  },
+
   deleteAll: () => {
     return new Promise((resolve, reject) => {
       Article.deleteMany({}, (err, data) => {
