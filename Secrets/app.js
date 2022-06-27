@@ -1,6 +1,6 @@
 const express = require("express");
 const ejs = require("ejs");
-const { db } = require("./level1_auth_db");
+const { db } = require("./db");
 
 const app = express();
 //Serve static files with this middleware
