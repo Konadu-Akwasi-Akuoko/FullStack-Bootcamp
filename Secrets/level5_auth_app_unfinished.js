@@ -5,7 +5,7 @@ require("dotenv").config();
 const passport = require("passport");
 const session = require("express-session");
 //! User model from mongoose
-const { User } = require("./db");
+const { User } = require("./level5_auth_db_unfinished");
 const { use } = require("passport");
 
 const app = express();
