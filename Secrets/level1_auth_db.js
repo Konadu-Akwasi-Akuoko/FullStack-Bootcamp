@@ -48,10 +48,10 @@ const db = {
   },
 };
 
-//? db.addUser("konadu@gmail.com", `525#!5564""kaa*#`, (data) => console.log(data));
-//? db.checkForAUser("konadu@gmail.com", `525#!5564""kaa*#`, (data) =>
-//   console.log(data)
-// );
+//db.addUser("konadu@gmail.com", `525#!5564""kaa*#`, (data) => console.log(data));
+db.checkForAUser("konadu@gmail.com", `525#!5564""kaa*#`, (data) =>
+  console.log(data)
+);
 
 //* Disconnect MongoDB when a SIG signal is received
 process.on("SIGINT", () => {
