@@ -9,12 +9,6 @@ const InputWithLabel = ({
   value,
   children,
 }) => {
-  // const [searchTerm, setSearchTerm] = React.useState("");
-
-  // React.useEffect(() => {
-  //   setSearchTerm(search);
-  // }, [search]);
-
   const useSearchTerm = (search) => {
     const [value, setValue] = React.useState(search || "");
 
