@@ -1,0 +1,17 @@
+.heading {
+  color: red;
+}
+
+img {
+  width: 100px;
+  height: auto;
+  margin: 24px;
+}
+
+footer > p {
+  display: inline;
+  margin-left: 24px;
+  margin-right: 24px;
+  size: 10px;
+  font-weight: bolder;
+}
