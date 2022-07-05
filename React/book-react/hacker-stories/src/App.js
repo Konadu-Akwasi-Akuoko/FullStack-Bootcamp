@@ -1,4 +1,3 @@
-// @ts-check
 import * as React from "react";
 import { InputWithLabel } from "./searchInput";
 import MyName from "./name";
