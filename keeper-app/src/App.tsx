@@ -9,6 +9,7 @@ function App() {
   return (
     <div>
       <Header />
+
       <Note arrayOfNotes={notes} />
       <Footer />
     </div>

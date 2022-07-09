@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function Header() {
+function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -10,4 +10,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Footer;
