@@ -9,6 +9,7 @@ html {
 body {
   background: #eee;
   padding: 0 16px;
+  background-image: url("/src/Images/background.png");
 }
 
 header {
@@ -25,11 +26,10 @@ header h1 {
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   text-align: center;
   bottom: 0;
   width: 100%;
-  height: 2.5rem;
 }
 
 footer p {
@@ -81,6 +81,8 @@ footer p {
 }
 
 .formInput .formInput-title {
+  display: block;
+  width: 100%;
   padding: 8px;
   border-right: #fff;
   border-left: #fff;
@@ -89,7 +91,21 @@ footer p {
   font-family: "Montserrat", sans-serif;
 }
 
+.formInput-title-first {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border-right: #fff;
+  border-left: #fff;
+  border-top: #fff;
+  border-bottom: #fff;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+}
+
 .formInput .formInput-content {
+  display: block;
+  width: 100%;
   padding: 8px;
   border-right: #fff;
   border-left: #fff;
@@ -106,13 +122,8 @@ input:focus {
 }
 
 .formInput .formInput-button {
-  padding: 8px;
-  font-size: 1rem;
-  font-family: "Montserrat", sans-serif;
+  display: block;
   background-color: #f5ba13;
-  border-radius: 7px;
-  border: none;
-  width: max-content;
   margin-left: auto;
 }
 

@@ -1,9 +1,11 @@
 import * as React from "react";
+import HighlightIcon from "@mui/icons-material/Highlight";
 
 function Header() {
   return (
     <header>
-      <h1>Keeper</h1>
+      <HighlightIcon style={{ display: "inline", color: "#fff" }} />
+      <h1 style={{ display: "inline" }}>Keeper</h1>
     </header>
   );
 }

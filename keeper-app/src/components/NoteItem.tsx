@@ -1,4 +1,5 @@
 import * as React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 type NoteItemProps = {
   noteItem: { key: number; title: string; content: string };
@@ -14,7 +15,7 @@ function NoteItem({ noteItem, deleteNote }: NoteItemProps) {
       <h1>{noteItem.title}</h1>
       <p>{noteItem.content}</p>
       <button type="button" onClick={handleOnButtonClick}>
-        DELETE
+        <DeleteIcon />
       </button>
     </div>
   );
