@@ -9,7 +9,7 @@
   "description": "Learning how to create a RESTful api",
   "main": "app.js",
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.20"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
